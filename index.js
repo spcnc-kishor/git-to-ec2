@@ -21,6 +21,11 @@ const { BASE_API } = constRoutes;
 const app = express();
 const port = process.env.PORT || 8001;
 
+console.log("server is ruunig");
+app.get("/", (req, res) => {
+  return res.json({ msg: true });
+});
+
 app.use(BASE_API, Router);
 
 app.listen(port, () => {
