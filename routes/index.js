@@ -1,9 +1,15 @@
 import express from "express";
 import userRouter from "./userRoute.js";
 import todoRouter from "./todoRoute.js";
+import { constRoutes } from "../common/constants.js";
+
 const Router = express.Router();
 
-Router.use("/user", userRouter);
-Router.use("/todo", todoRouter);
+const { USER, TODO } = constRoutes;
+Router.get("/", () => {
+  console.log("ok");
+});
+Router.use(USER, userRouter);
+Router.use(TODO, todoRouter);
 
-export default Router
+export default Router;

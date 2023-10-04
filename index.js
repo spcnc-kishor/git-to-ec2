@@ -1,8 +1,9 @@
 import express from "express";
-// import "./model/index.js";
+import "./model/index.js";
 import Router from "./routes/index.js";
 import { constRoutes } from "./common/constants.js";
 import log4js from "log4js";
+import cookie from "cookie-parser";
 
 // log4js.configure({
 //   appenders: { cheese: { type: "file", filename: "cheese.log" } },
@@ -21,10 +22,13 @@ const { BASE_API } = constRoutes;
 const app = express();
 const port = process.env.PORT || 8001;
 
-console.log("server is ruunig");
+app.use(cookie());
+app.use(express.json());
+app.use(express.urlencoded({ extended: true }));
+
 app.get("/", (req, res) => {
-  console.log('hitted');
-  return res.json({ msg: true });
+  console.log("hitted");
+  return res.status(200).json({ msg: true });
 });
 
 app.use(BASE_API, Router);
