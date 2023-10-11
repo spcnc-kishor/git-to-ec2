@@ -34,6 +34,7 @@ app.get("/", (req, res) => {
 
 app.use(BASE_API, Router);
 
+console.log(process.env.HOST);
 app.listen(port, () => {
   console.log("User microservice running on port - " + port);
 });
