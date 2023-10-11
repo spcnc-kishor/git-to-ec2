@@ -25,12 +25,13 @@ export const signin = async (req, res) => {
         message: "User doesn't exist with this username or password",
       });
     }
-    const token = jwt.sign({ userId: userIsExist.id }, secret);
+    const token = jwt.sign({ userId: userIsExist.id }, secret,{expiresIn:10});
     res.cookie("access-token", token, {
       secure: true,
       httpOnly: true,
     });
-    return res.json({ token: token });
+    // return res.json({ token: token });
+    return res.send(token);
   } catch (error) {
     console.log(error);
     return res.status(500).json({
@@ -71,4 +72,11 @@ export const signup = async (req, res) => {
       message: error.message || "Something went wrong",
     });
   }
+};
+
+export const signout = async (req, res) => {
+  return res
+    .clearCookie("access-token")
+    .status(202)
+    .json({ status: true, message: "logged out" });
 };

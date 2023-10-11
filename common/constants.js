@@ -4,6 +4,7 @@ export const constRoutes = {
   TODO: "/todo",
   SIGNIN: "/signin",
   SIGNUP: "/signup",
+  SIGNOUT : "/signout"
 };
 export const status_codes = {
   SUCCESS: 200,

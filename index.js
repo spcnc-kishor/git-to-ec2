@@ -28,6 +28,7 @@ app.use(express.urlencoded({ extended: true }));
 
 app.get("/", (req, res) => {
   console.log("hitted");
+  console.log(req.headers.cookie);
   return res.status(200).json({ msg: true });
 });
 
